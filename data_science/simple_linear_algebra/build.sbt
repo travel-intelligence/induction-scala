@@ -13,7 +13,7 @@ lazy val commonSettings = Seq(
 	organization := "com.amadeus.ti",
 	version := "0.1.0",
 	scalaVersion := "2.10.5",
-	sbtVersion := "0.13.7"
+	sbtVersion := "0.13.13"
 )
 
 lazy val libSettings = Seq(
@@ -49,15 +49,6 @@ resolvers ++= Seq(
 	"Local repository"   at "http://localhost/artifacts/mavenrepo/",
 	"Scalaz Bintray Repo" at "http://dl.bintray.com/scalaz/releases",
 	Resolver.mavenLocal)
-
-mergeStrategy in assembly <<= (mergeStrategy in assembly) { mergeStrategy => {
-    case entry => {
-      val strategy = mergeStrategy(entry)
-      if (strategy == MergeStrategy.deduplicate) MergeStrategy.first
-      else strategy
-    }
-  }
-}
 
 publishTo := Some("Local Maven Repo" at "http://localhost/artifacts/mavenrepo/")
 

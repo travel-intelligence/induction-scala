@@ -20,7 +20,7 @@ lazy val commonSettings = Seq(
 	organization := "com.amadeus.ti",
 	version := "0.1.0",
 	scalaVersion := "2.10.5",
-	sbtVersion := "0.13.7"
+	sbtVersion := "0.13.13"
 )
 
 lazy val libSettings = Seq(
@@ -62,15 +62,6 @@ resolvers ++= Seq(
   "Apache HBase" at "https://repository.apache.org/content/repositories/releases",
   "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/",
 	Resolver.mavenLocal)
-
-mergeStrategy in assembly <<= (mergeStrategy in assembly) { mergeStrategy => {
-    case entry => {
-      val strategy = mergeStrategy(entry)
-      if (strategy == MergeStrategy.deduplicate) MergeStrategy.first
-      else strategy
-    }
-  }
-}
 
 fork := true
 
